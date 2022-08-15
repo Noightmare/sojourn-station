@@ -52,19 +52,20 @@ Has ability of every roach.
 	inherent_mutations = list(MUTATION_GIGANTISM, MUTATION_RAND_UNSTABLE, MUTATION_RAND_UNSTABLE, MUTATION_RAND_UNSTABLE)
 
 /mob/living/carbon/superior_animal/roach/kaiser/getTargets()
-	..()
+	. = ..()
+
 	rounds_left = 2 //Reload us, after all we are now targeting someone new
 	ranged = TRUE //Were reloaded we can be ranged once more
 
 /mob/living/carbon/superior_animal/roach/kaiser/New()
-	..()
+	. = ..()
 	gas_sac = new /datum/reagents(100, src)
 	pixel_x = -16  // For some reason it doesn't work when I overload them in class definition, so here it is.
 	pixel_y = -16
 
 
 /mob/living/carbon/superior_animal/roach/kaiser/handle_ai()
-	..()
+	. = ..()
 
 	if(can_call_reinforcements())
 		distress_call()
@@ -97,7 +98,7 @@ Has ability of every roach.
 
 	S.attach(location)
 	S.set_up(gas_sac, gas_sac.total_volume, 0, location)
-	src.visible_message(SPAN_DANGER("\the [src] secretes strange vapors!"))
+	visible_message(SPAN_DANGER("\the [src] secretes strange vapors!"))
 
 	spawn(0)
 		S.start()
@@ -116,9 +117,9 @@ Has ability of every roach.
 
 	if (distress_call_stage)
 		distress_call_stage--
-		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
-			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
+			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows(src))
 			B.distress(TRUE)
@@ -133,11 +134,11 @@ Has ability of every roach.
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
+/mob/living/carbon/superior_animal/roach/kaiser/slip(slipped_on)
 	return FALSE
 
 //RIDING
-/mob/living/carbon/superior_animal/roach/kaiser/try_tame(var/mob/living/carbon/user, var/obj/item/reagent_containers/food/snacks/grown/thefood)
+/mob/living/carbon/superior_animal/roach/kaiser/try_tame(mob/living/carbon/user, obj/item/reagent_containers/food/snacks/grown/thefood)
 	if(!istype(thefood))
 		return FALSE
 	if(prob(40))

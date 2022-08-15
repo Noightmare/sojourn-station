@@ -32,6 +32,7 @@
 				/obj/item/gun/projectile/handmade_pistol = 2,\
 				/obj/item/gun/projectile/automatic/luger = 0.1, \
 				/obj/item/gun/projectile/boltgun/zatvor = 2, \
+				/obj/item/gun/projectile/automatic/omnirifle/omnicarbine/solmarine/shotgunless = 0.5, \
 				//obj/item/gun/projectile/ladon/sa = 1,
 				/obj/item/gun/projectile/olivaw = 2,
 				/obj/item/gun_upgrade/barrel/forged = 2))
@@ -309,6 +310,15 @@
 	name = "low chance random gun  mod"
 	icon_state = "gun-red-low"
 	spawn_nothing_percentage = 80
+
+/obj/random/dungeon_gun_mods/voidwolf
+
+/obj/random/dungeon_gun_mods/voidwolf/item_to_spawn()
+	return pickweight(list( // i hate pickweight but fine
+		/obj/item/gun_upgrade/barrel/gauss = 1,
+		/obj/item/gun_upgrade/scope/killer = 1,
+		/obj/item/gun_upgrade/trigger/dangerzone = 1, //only good mods
+	))
 
 //Armor Mod Spawners
 /obj/random/dungeon_armor_mods

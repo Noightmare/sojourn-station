@@ -214,10 +214,15 @@ SUBSYSTEM_DEF(trade)
 
 		return FALSE
 
+	if(istype(item, /obj/item/stack))
+		var/obj/item/stack/current_stack = item
+		if(current_stack.amount < current_stack.max_amount)	// prevents selling 3 as same as full stacks
+			return FALSE
+
 	if(ispath(offer_path, /datum/reagent))		// If item is not of the types checked and the offer is for a reagent, fail
 		return FALSE
 
-	return TRUE
+	return TRUE		// Otherwise, pass since we're not checking for anything with special considerations (reagents, stacks, containers) if the previous checks did not return
 
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, offer_path)
 	if(QDELETED(beacon) || !station)
@@ -247,7 +252,7 @@ SUBSYSTEM_DEF(trade)
 		var/invoice_contents_info
 
 		for(var/atom/movable/AM in exported)
-			SEND_SIGNAL(src, COMSIG_TRADE_BEACON, AM)
+			LEGACY_SEND_SIGNAL(src, COMSIG_TRADE_BEACON, AM)
 			invoice_contents_info += "<li>[AM.name]</li>"
 			qdel(AM)
 
@@ -339,6 +344,9 @@ SUBSYSTEM_DEF(trade)
 	if(cost <= 0)
 		cost = get_import_cost(thing, station)
 
+	if(thing.surplus_tag)
+		cost -= cost * 0.2
+
 	if(account)
 		create_log_entry("Individial Sale", account.get_name(), "<li>[thing.name]</li>", cost)
 		qdel(thing)
@@ -375,10 +383,13 @@ SUBSYSTEM_DEF(trade)
 			var/export_multiplier = get_export_price_multiplier(item)
 			var/export_value = item_price * export_multiplier
 
+			if(item.surplus_tag)
+				item_price -= item_price * 0.2
+
 			if(export_multiplier)
 				invoice_contents_info += "<li>[item.name]</li>"
 				cost += export_value
-				SEND_SIGNAL(src, COMSIG_TRADE_BEACON, item)
+				LEGACY_SEND_SIGNAL(src, COMSIG_TRADE_BEACON, item)
 				qdel(item)
 			else
 				item.forceMove(get_turf(AM))		// Should be the same tile

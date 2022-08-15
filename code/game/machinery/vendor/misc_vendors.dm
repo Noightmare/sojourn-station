@@ -43,6 +43,7 @@
 				/obj/item/flame/lighter/zippo/royal = 4,
 				/obj/item/flame/lighter/zippo/gonzo = 4,
 				/obj/item/flame/lighter/zippo/bullet = 4,
+				/obj/item/flame/lighter/zippo/brass = 3,
 				/obj/item/flame/lighter/zippo/absolutism = 4)
 	contraband = list(/obj/item/flame/lighter/zippo/communist = 2,
 				/obj/item/flame/lighter/zippo/excelsior = 4,
@@ -81,6 +82,8 @@
 				/obj/item/flame/lighter/zippo/gonzo = 50,
 				/obj/item/flame/lighter/zippo/bullet = 50,
 				/obj/item/flame/lighter/zippo/communist = 250, // Idiot tax, but still affordable
+				/obj/item/flame/lighter/zippo/brass = 55,
+				/obj/item/flame/lighter/zippo/absolutism = 50,
 				/obj/item/storage/fancy/cigar = 250,
 				/obj/item/clothing/mask/vape = 150,
 				/obj/item/clothing/mask/smokable/pipe = 75,
@@ -233,6 +236,7 @@
 		/obj/item/clothing/accessory/cape/blackalt = 8,
 		//Glasses
 		/obj/item/clothing/glasses/binoclard_lenses = 5,
+		/obj/item/clothing/glasses/binoclard_lenses/dark = 3,
 		//Gloves
 		/obj/item/clothing/gloves/knuckles = 3,
 		/obj/item/clothing/gloves/evening = 3,
@@ -381,6 +385,7 @@
 		/obj/item/clothing/under/dress/blue = 5,
 		/obj/item/clothing/under/dress/red = 5,
 		/obj/item/clothing/under/dismas = 5,
+		/obj/item/clothing/under/fancy_redish_suit = 5,
 		/obj/item/clothing/under/top/dimmadome = 5,
 		/obj/item/clothing/under/top/haltertop = 5,
 		/obj/item/clothing/under/leisure = 5,
@@ -412,22 +417,22 @@
 		/obj/item/clothing/under/pants/leggingswhite = 5,
 		/obj/item/clothing/under/pants/leggingsprint = 5,
 		//Over Clothing
-		/obj/item/clothing/suit/storage/duster/brown = 5,
-		/obj/item/clothing/suit/storage/duster/chestnut = 5,
-		/obj/item/clothing/suit/storage/duster/crimson = 5,
-		/obj/item/clothing/suit/storage/duster/bloodred = 5,
-		/obj/item/clothing/suit/storage/duster/gauntlet = 5,
-		/obj/item/clothing/suit/storage/duster/ivory = 5,
-		/obj/item/clothing/suit/storage/duster/lumber = 5,
-		/obj/item/clothing/suit/storage/duster/navy = 5,
-		/obj/item/clothing/suit/storage/duster = 5,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong = 5,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/green = 5,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/black = 5,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/white = 5,
-		/obj/item/clothing/suit/storage/duster/bladerunner = 5,
-		/obj/item/clothing/suit/storage/duster/donte = 5,
-		/obj/item/clothing/suit/storage/duster/denton = 5,
+		/obj/item/clothing/accessory/duster/brown = 5,
+		/obj/item/clothing/accessory/duster/chestnut = 5,
+		/obj/item/clothing/accessory/duster/crimson = 5,
+		/obj/item/clothing/accessory/duster/bloodred = 5,
+		/obj/item/clothing/accessory/duster/gauntlet = 5,
+		/obj/item/clothing/accessory/duster/ivory = 5,
+		/obj/item/clothing/accessory/duster/lumber = 5,
+		/obj/item/clothing/accessory/duster/navy = 5,
+		/obj/item/clothing/accessory/duster = 5,
+		/obj/item/clothing/accessory/duster/cyberpunklong = 5,
+		/obj/item/clothing/accessory/duster/cyberpunklong/green = 5,
+		/obj/item/clothing/accessory/duster/cyberpunklong/black = 5,
+		/obj/item/clothing/accessory/duster/cyberpunklong/white = 5,
+		/obj/item/clothing/accessory/duster/bladerunner = 5,
+		/obj/item/clothing/accessory/duster/donte = 5,
+		/obj/item/clothing/accessory/duster/denton = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/poofy = 5,
 		/obj/item/clothing/suit/storage/texan = 2,
 		/obj/item/clothing/suit/storage/triad = 2,
@@ -480,6 +485,7 @@
 		/obj/item/clothing/accessory/cape/blackalt = 95,
 		//Glasses
 		/obj/item/clothing/glasses/binoclard_lenses = 50,
+		/obj/item/clothing/glasses/binoclard_lenses/dark = 50,
 		//Gloves
 		/obj/item/clothing/gloves/knuckles = 65,
 		/obj/item/clothing/gloves/evening = 70,
@@ -628,6 +634,7 @@
 		/obj/item/clothing/under/dress/blue = 75,
 		/obj/item/clothing/under/dress/red = 75,
 		/obj/item/clothing/under/dismas = 75,
+		/obj/item/clothing/under/fancy_redish_suit = 80,
 		/obj/item/clothing/under/top/dimmadome = 75,
 		/obj/item/clothing/under/top/haltertop = 75,
 		/obj/item/clothing/under/leisure = 75,
@@ -659,22 +666,22 @@
 		/obj/item/clothing/under/pants/leggingswhite = 65,
 		/obj/item/clothing/under/pants/leggingsprint = 65,
 		//Over Clothing
-		/obj/item/clothing/suit/storage/duster/brown = 95,
-		/obj/item/clothing/suit/storage/duster/chestnut = 95,
-		/obj/item/clothing/suit/storage/duster/crimson = 95,
-		/obj/item/clothing/suit/storage/duster/bloodred = 95,
-		/obj/item/clothing/suit/storage/duster/gauntlet = 95,
-		/obj/item/clothing/suit/storage/duster/ivory = 95,
-		/obj/item/clothing/suit/storage/duster/lumber = 95,
-		/obj/item/clothing/suit/storage/duster/navy = 95,
-		/obj/item/clothing/suit/storage/duster = 95,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong = 95,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/green = 95,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/black = 95,
-		/obj/item/clothing/suit/storage/duster/cyberpunklong/white = 95,
-		/obj/item/clothing/suit/storage/duster/bladerunner = 95,
-		/obj/item/clothing/suit/storage/duster/donte = 95,
-		/obj/item/clothing/suit/storage/duster/denton = 95,
+		/obj/item/clothing/accessory/duster/brown = 40,
+		/obj/item/clothing/accessory/duster/chestnut = 40,
+		/obj/item/clothing/accessory/duster/crimson = 40,
+		/obj/item/clothing/accessory/duster/bloodred = 40,
+		/obj/item/clothing/accessory/duster/gauntlet = 40,
+		/obj/item/clothing/accessory/duster/ivory = 40,
+		/obj/item/clothing/accessory/duster/lumber = 40,
+		/obj/item/clothing/accessory/duster/navy = 40,
+		/obj/item/clothing/accessory/duster = 40,
+		/obj/item/clothing/accessory/duster/cyberpunklong = 40,
+		/obj/item/clothing/accessory/duster/cyberpunklong/green = 40,
+		/obj/item/clothing/accessory/duster/cyberpunklong/black = 40,
+		/obj/item/clothing/accessory/duster/cyberpunklong/white = 40,
+		/obj/item/clothing/accessory/duster/bladerunner = 40,
+		/obj/item/clothing/accessory/duster/donte = 40,
+		/obj/item/clothing/accessory/duster/denton = 40,
 		/obj/item/clothing/suit/storage/toggle/labcoat/poofy = 150, //labcoats are exspensive
 		/obj/item/clothing/suit/storage/texan = 100,
 		/obj/item/clothing/suit/storage/triad = 120,
@@ -835,6 +842,8 @@
 					/obj/item/storage/pill_bottle/dice = 7,
 					/obj/item/storage/pill_bottle/dice_nerd = 5,
 					/obj/item/storage/pill_bottle/chechker = 7,
+					/obj/item/toy/junk/dodgeball = 5,
+					/obj/item/toy/junk/dodgeball/face = 5,
 					/obj/item/storage/fancy/crayons = 5,
 					/obj/item/storage/box/team_support = 8,
 					/obj/item/device/binoculars = 12,
@@ -855,13 +864,17 @@
 					/obj/item/cardholder/rabbit = 20,
 					/obj/item/storage/hcases/cardcarp = 20,
 					/obj/item/card_carp = 50,
-					/obj/item/card_carp/index = 50
+					/obj/item/card_carp/index = 50,
+					/obj/item/clothing/under/dodgeball_blue = 5,
+					/obj/item/clothing/under/dodgeball_red = 5
 					)
 	prices = list(
 					/obj/item/storage/pill_bottle/dice = 20,
 					/obj/item/storage/pill_bottle/dice_nerd = 35,
 					/obj/item/storage/pill_bottle/chechker = 40,
 					/obj/item/storage/fancy/crayons = 150,
+					/obj/item/toy/junk/dodgeball = 15,
+					/obj/item/toy/junk/dodgeball/face = 15,
 					/obj/item/board = 35,
 					/obj/item/storage/box/team_support = 40,
 					/obj/item/device/binoculars = 30,
@@ -881,7 +894,9 @@
 					/obj/item/cardholder/rabbit = 30,
 					/obj/item/storage/hcases/cardcarp = 20,
 					/obj/item/card_carp = 1,
-					/obj/item/card_carp/index = 1)
+					/obj/item/card_carp/index = 1,
+					/obj/item/clothing/under/dodgeball_blue = 15,
+					/obj/item/clothing/under/dodgeball_red = 15)
 
 /obj/machinery/vending/gamers/hunters
 	name = "Pre-Payed Game Emporium"
@@ -890,6 +905,8 @@
 					/obj/item/storage/pill_bottle/dice = 3,
 					/obj/item/storage/pill_bottle/dice_nerd = 2,
 					/obj/item/storage/pill_bottle/chechker = 4,
+					/obj/item/toy/junk/dodgeball = 4,
+					/obj/item/toy/junk/dodgeball/face = 4,
 					/obj/item/board = 4,
 					/obj/item/storage/fancy/crayons = 5,
 					/obj/item/storage/box/team_support = 4,
@@ -910,13 +927,17 @@
 					/obj/item/cardholder/rabbit = 4,
 					/obj/item/storage/hcases/cardcarp = 4,
 					/obj/item/card_carp = 4,
-					/obj/item/card_carp/index = 4
+					/obj/item/card_carp/index = 4,
+					/obj/item/clothing/under/dodgeball_blue = 3,
+					/obj/item/clothing/under/dodgeball_red = 3
 					)
 	prices = list(
 					/obj/item/storage/pill_bottle/dice = 0,
 					/obj/item/storage/pill_bottle/dice_nerd = 0,
 					/obj/item/storage/pill_bottle/chechker = 0,
 					/obj/item/storage/fancy/crayons = 0,
+					/obj/item/toy/junk/dodgeball = 0,
+					/obj/item/toy/junk/dodgeball/face = 0,
 					/obj/item/board = 0,
 					/obj/item/storage/box/team_support = 0,
 					/obj/item/device/binoculars = 0,
@@ -936,6 +957,8 @@
 					/obj/item/cardholder/rabbit = 0,
 					/obj/item/storage/hcases/cardcarp = 0,
 					/obj/item/card_carp = 0,
-					/obj/item/card_carp/index = 0)
+					/obj/item/card_carp/index = 0,
+					/obj/item/clothing/under/dodgeball_blue = 0,
+					/obj/item/clothing/under/dodgeball_red = 0)
 	always_open = TRUE
 

@@ -166,6 +166,10 @@
 	origin_tech = list(TECH_POWER = 6)
 	maxcharge = 1600
 
+/obj/item/cell/medium/hyper/depleted
+	charge = 0
+	starts_max_charge = FALSE
+
 /obj/item/cell/medium/moebius
 	name = "Soteria \"Power-Geyser 800M\""
 	desc = "Soteria branded rechargeable M-standardized power cell. This one is as cheap as Lonestar models come."
@@ -542,8 +546,8 @@
 			return
 		else
 			cell.charge += min(charge_per_cycle, cell.maxcharge - cell.charge)
-			
-			
+
+
 // Improv crank
 /obj/item/device/manual_charger/improv
 	name = "handmade manual recharger"

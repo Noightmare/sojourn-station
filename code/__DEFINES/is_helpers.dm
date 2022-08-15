@@ -1,9 +1,14 @@
+#define isdatum(D) (istype(D, /datum))
 
 #define isweakref(D) (istype(D, /datum/weakref))
 
 #define islist(A) istype(A, /list)
 
+#define isatom(A) istype(A, /atom)
+
 #define ismob(A) istype(A, /mob)
+
+#define ismecha(A) istype(A, /obj/mecha)
 
 #define isobserver(A) istype(A, /mob/observer)
 
@@ -46,7 +51,11 @@
 
 #define issuperiortermite(A) istype(A, /mob/living/carbon/superior_animal/termite)
 
+#define issuperiortermitenodespawn(A) istype(A, /mob/living/carbon/superior_animal/termite_no_despawn) //THIS SUCKS WHAT THE FUCK
+
 #define issuperiorspider(A) istype(A, /mob/living/carbon/superior_animal/giant_spider)
+
+#define issuperiorroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
 
 #define isburrow(A) istype(A, /obj/structure/burrow)
 //---------------------------------------------------
@@ -71,6 +80,8 @@
 #define isHUDobj(A) istype(A, /obj/screen)
 
 #define isitem(A) istype(A, /obj/item)
+
+#define isprojectile(A) istype(A, /obj/item/projectile)
 
 #define isorgan(A) istype(A, /obj/item/organ/external)
 

@@ -449,6 +449,8 @@
 	name = "Market Professional"
 	desc = "You've become an excellent appraiser of goods over the years. Just by looking at the item, you can know how much it would sell for in today's market rates."
 
+//Medical perks - relates to surgery and all
+
 /datum/perk/surgical_master
 	name = "Surgery Training"
 	desc = "While you may not know the more advanced medical procedures, your mandatory training on surgery for implantation purposes allows you to perform basic surgical procedures with ease."
@@ -460,7 +462,6 @@
 /datum/perk/robotics_expert
 	name = "Robotics Expert"
 	desc = "Your formal training and experience in advanced mech construction and complex devices has made you more adept at working with them."
-
 
 /datum/perk/robotics_expert/assign(mob/living/carbon/human/H)
 	..()
@@ -603,6 +604,11 @@
 		holder.verbs -= codespeak_procs
 	..()
 
+/datum/perk/gunsmith
+	name = "Gunsmith Master"
+	desc = "You are a professional gunsmith, your knowledge allows to not only repair firearms but expertly craft them. \
+			This includes the machines required to do so, including the bullet fabricator."
+
 //Chef's special perk
 
 /datum/perk/foodappraise
@@ -649,3 +655,31 @@
 		if(9)
 			F.name = "hearty [F.name]"
 
+
+
+
+//Ghost spawners
+
+/datum/perk/true_name
+	name = "Rename Self"
+	desc = "No one knows you thus your name is what ever you need or want to be."
+	active = FALSE
+	passivePerk = FALSE
+	var/anti_cheat = FALSE
+
+/datum/perk/true_name/activate()
+	..()
+	if(anti_cheat)
+		to_chat(holder, "You can only keep up so many personallitys.")
+		return FALSE
+	anti_cheat = TRUE
+	var/mob/M = usr
+	var/npc_name = input(M, "Choose your name: ", "Superstar Name", "VIP") as text
+	if(src && npc_name)
+		M.real_name = npc_name
+		M.stats.removePerk(/datum/perk/true_name)
+	anti_cheat = FALSE
+	return TRUE
+
+/datum/perk/true_name/remove()
+	..()

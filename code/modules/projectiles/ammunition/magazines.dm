@@ -167,6 +167,11 @@
 	ammo_color = "-hv"
 	ammo_type = /obj/item/ammo_casing/pistol_35/hv
 
+/obj/item/ammo_magazine/smg_35/hv/empty
+
+	ammo_color = ""
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/smg_35/rubber
 	name = "smg magazine (9mm rubber)"
 	icon_state = "smg_r"
@@ -537,8 +542,9 @@
 	ammo_type = /obj/item/ammo_casing/rifle_75
 	max_ammo = 100
 	multiple_sprites = 1
-	w_class = ITEM_SIZE_NORMAL //Balance change, these things are the size a box do to being legit 5 mags worth ammo
-
+	w_class = ITEM_SIZE_BULKY //Balance change, these things are the size a box due to being legit 5 mags worth of ammo. Wacky that it was normal-sized before.
+	extra_bulk = -2
+	
 /obj/item/ammo_magazine/rifle_75_linked_box/update_icon()
 	if (!stored_ammo.len)
 		icon_state = "pk_box-0"
@@ -910,6 +916,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/ammo_magazine/speed_loader_rifle_75/empty
+	initial_ammo = 0
+	icon_state = "stripper_base"
+
 /obj/item/ammo_magazine/speed_loader_light_rifle_257
 	name = "ammo strip (6.5mm Carbine)"
 	desc = "A 10 round ammo strip for 6.5mm Carbine."
@@ -930,6 +940,10 @@
 /obj/item/ammo_magazine/speed_loader_light_rifle_257/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/ammo_magazine/speed_loader_light_rifle_257/empty
+	initial_ammo = 0
+	icon_state = "stripper_base"
 
 /obj/item/ammo_magazine/speed_loader_heavy_rifle_408
 	name = "ammo strip (8.6mm Heavy Rifle)"

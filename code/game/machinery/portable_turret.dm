@@ -113,7 +113,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	var/area/A = get_area(src)
-	SEND_SIGNAL(A, COMSIG_TURRENT, src)
+	LEGACY_SEND_SIGNAL(A, COMSIG_TURRENT, src)
 	setup()
 
 /obj/machinery/porta_turret/crescent/New()
@@ -125,6 +125,7 @@
 	qdel(spark_system)
 	spark_system = null
 	QDEL_NULL(installation)
+	density = FALSE //Were broken and can be stepped over
 	. = ..()
 
 /obj/machinery/porta_turret/proc/setup()
@@ -501,15 +502,17 @@ var/list/turret_icons
 		return
 
 	if(enabled)
-		if(!attacked && !emagged)
-			attacked = 1
-			spawn()
-				sleep(60)
-				attacked = 0
+		if (!(Proj.testing))
+			if(!attacked && !emagged)
+				attacked = 1
+				spawn()
+					sleep(60)
+					attacked = 0
 
 	..()
 
-	take_damage(damage*Proj.structure_damage_factor)
+	if (!(Proj.testing))
+		take_damage(damage*Proj.structure_damage_factor)
 
 /obj/machinery/porta_turret/emp_act(severity)
 	if(enabled)

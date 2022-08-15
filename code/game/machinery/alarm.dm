@@ -982,8 +982,11 @@ FIRE ALARM
 		return
 	return nano_ui_interact(user)
 
-/obj/machinery/firealarm/bullet_act()
-	return src.alarm()
+/obj/machinery/firealarm/bullet_act(var/obj/item/projectile/Proj)
+	if (!(Proj.testing))
+		return src.alarm()
+	else
+		return
 
 /obj/machinery/firealarm/emp_act(severity)
 	if(prob(50/severity))
@@ -1041,7 +1044,7 @@ FIRE ALARM
 			if(buildstage == 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/airalarm_electronics/circuit = new /obj/item/airalarm_electronics()
+					var/obj/item/firealarm_electronics/circuit = new /obj/item/firealarm_electronics()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()

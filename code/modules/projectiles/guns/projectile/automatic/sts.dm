@@ -105,13 +105,13 @@
 	icon_state = "sts"
 	item_state = "sts"
 	price_tag = 1000
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_RIFLE
 	mag_well = MAG_WELL_RIFLE
 	damage_multiplier = 1
 	penetration_multiplier = 1.2
 	init_recoil = RIFLE_RECOIL(1.3)
-	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/NM_PARA.ogg'
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/automatic/sts/rifle/sawn
 
@@ -128,7 +128,7 @@
 	icon_state = "sts"
 	item_state = "sts"
 	price_tag = 800
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	caliber = CAL_RIFLE
 	mag_well = MAG_WELL_RIFLE
 	penetration_multiplier = 1.0
@@ -148,12 +148,12 @@
 	icon = 'icons/obj/guns/projectile/sts35.dmi'
 	icon_state = "stspara"
 	item_state = "stspara"
-	w_class = ITEM_SIZE_HUGE
+	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_RIFLE
 	mag_well = MAG_WELL_RIFLE
 	damage_multiplier = 1.2 //Well oiled
 	init_recoil = RIFLE_RECOIL(1.5)
-	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
+	fire_sound = 'sound/weapons/guns/fire/NM_PARA.ogg' // This is the sound ripped from a video of me shooting an FM FSL. As real as it gets. - Seb
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/automatic/sts/rifle/sawn/blackshield
 	serial_type = "NM"
@@ -170,7 +170,7 @@
 	icon = 'icons/obj/guns/projectile/sawnoff/sts30.dmi'
 	icon_state = "sts"
 	item_state = "sts"
-	w_class = ITEM_SIZE_BULKY
+	w_class = ITEM_SIZE_NORMAL
 	caliber = CAL_RIFLE
 	mag_well = MAG_WELL_RIFLE
 	damage_multiplier = 1.0 //Rifle was fine

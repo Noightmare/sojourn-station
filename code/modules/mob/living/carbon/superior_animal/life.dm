@@ -3,7 +3,8 @@
 		stance = HOSTILE_STANCE_IDLE
 		target_mob = null
 		lost_sight = FALSE
-		walk(src, 0)
+		target_location = null
+		SSmove_manager.stop_looping(src)
 		return
 
 	return 1
@@ -101,7 +102,7 @@
 			analgesic = chem_effects[CE_PAINKILLER]
 
 	if(status_flags & GODMODE)
-		return 0
+		return FALSE
 
 	if(light_dam)
 		var/light_amount = 0
@@ -115,7 +116,8 @@
 			heal_overall_damage(1,1)
 
 	// nutrition decrease
-	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
-		nutrition = max (0, nutrition - hunger_factor)
+	if(stat != DEAD)
+		if (hunger_factor && (nutrition > 0))
+			nutrition = max (0, nutrition - hunger_factor)
 
 	updatehealth()

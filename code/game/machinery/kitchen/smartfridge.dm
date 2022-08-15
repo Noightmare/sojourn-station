@@ -26,6 +26,8 @@
 	var/is_secure = 0
 	var/datum/wires/smartfridge/wires = null
 
+	atmos_canpass = CANPASS_NEVER
+
 
 
 /obj/machinery/smartfridge/secure
@@ -142,6 +144,7 @@
 	icon_off = "showcase-off"
 	icon_panel = "showcase-panel"
 	var/icon_fill = "showcase-fill"
+	density = FALSE // For placing atop tables as a proper storage, like on the old layout. - Seb
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))

@@ -15,6 +15,11 @@
 
 	var/eating_time = 900
 
+	/// Does this mob advance if they can't see their target?
+	var/advance_if_cant_see = FALSE
+	/// Chance to fire a projectile if it would hit a friendly.
+	var/do_friendly_fire_chance = 10
+
 	/// Do we randomly retarget?
 	var/retarget = TRUE
 	/// How many ticks we will wait before trying to retarget randomly. When it hits 0, we retarget and reset the timer to retarget_timer_initial.
@@ -30,6 +35,11 @@
 	/// Percentage chance that we will keep targetting our current target if we retarget.
 	var/retarget_chance = 50 //arbitrary value
 
+	/// Do we always send a message to our target when we telegraph, or only in proximity?
+	var/always_telegraph_to_target = TRUE
+
+	/// Do we advance?
+	var/advance = TRUE
 	/// Stored var of calculation ran within [/mob/living/carbon/superior_animal/proc/advance_towards]
 	var/advance_steps = 0
 	/// How many tiles we will advance forward from our current position if we can't hit our current target.
@@ -38,9 +48,14 @@
 	var/advancement_increment = 5
 	/// Will be incremented advancement_increment ticks whenever a ranged mob decides to advance. If more than world.time, targetting walks will be ignored, to not end the advancement.
 	var/advancement_timer = 0
+	/// Do we wander if we can't see our target?
+	var/wander_if_lost_sight = TRUE
 
 	/// Has this mob lost sight of their target? This is how we make sure mobs don't constantly go to the position of the target they've lost sight of.
 	var/lost_sight = FALSE
+
+	/// Flags for AI.
+	var/ai_flags = 0
 
 	///How delayed are our ranged attacks, in ticks. Reduces DPS.
 	var/fire_delay = 0
@@ -54,17 +69,22 @@
 	/// Do we charge our melee attacks if we aren't adjacent?
 	var/do_melee_if_not_adjacent = TRUE
 
-	/// Number of delayed AI ticks, used for delaying ranged attacks. At 9, ranged mobs will be delayed by one tick after target. TODO: Create a override.
-	var/delayed = 0
-	/// How much we increment this mob's delayed var each time.
-	var/delay_amount = 0
+
+	/// Number of delayed AI ticks, used for delaying ranged attacks. At 1, ranged mobs will be delayed by one tick after target.
+	var/delayed = 1
+	/// Value that delayed will be reset to.
+	var/delayed_initial = 1
 	/// If this is more than the world timer, and we retarget, we will immediately attack.
 	var/retarget_rush_timer = 0
 	/// For this amount of time after a retarget, any retargets will cause a instant attack.
 	var/retarget_rush_timer_increment = 10 SECONDS //arbitrary value for now
 
-	/// Will this mob continue to fire even if LOS has been broken?
-	var/fire_through_wall = FALSE
+	/// Can this mob see it's current targets through walls and will never act like it can't?
+	var/see_through_walls = FALSE
+	/// Will this mob continue to fire at it's targets through walls? Ideally used with see_through_walls
+	var/fire_through_walls = FALSE
+
+	var/see_past_viewRange = FALSE
 	/// How many ticks are we willing to wait before untargetting a mob that we can't see?
 	var/patience = 5
 	/// What patience will be reset to whenever it's reset.
@@ -160,8 +180,19 @@
 	var/has_special_parts = FALSE //var for checking during the butcher process.
 	var/special_parts = list() //Any special body parts.
 
-	var/melee_damage_lower = 0
-	var/melee_damage_upper = 10
+	melee_damage_lower = 0
+	melee_damage_upper = 10
+
+	/// Determines if the mob will target whoever attacked them in the absence of an existing target. Ignores view range.
+	var/react_to_attack = TRUE
+	/// Determines what the mob will fire at if reacting to an attack they can't see. DO NOT MERGE IF NIKO DOES NOT REMOVE THIS COMMENT
+	var/retaliation_type = NO_RETALIATION
+	/// Determines what the mob will do if they are reacting to an attack and they can't see their target.
+	var/target_out_of_sight_mode = GUESS_LOCATION_WITH_END_OF_LINE
+	/// If true, turfs that have no LOS on the target out of viewrange will be ignored when finding a location in an aura/line that's out of viewrange.
+	var/out_of_sight_turf_LOS_check = TRUE
+	/// If target_out_of_sight_mode == GUESS_LOCATION_WITH_LINE, distance from src and target will be multiplied by this, then set as the limit for the line search.
+	var/out_of_viewrange_line_distance_mult = 2
 
 	var/list/objectsInView //memoization for getObjectsInView()
 	var/viewRange = 7 //how far the mob AI can see
@@ -177,6 +208,8 @@
 	 * Otherwise, you will access the pointer in memory to the actual target, instead of the target itself.
 	 */
 	var/datum/weakref/target_mob
+	/// Stored value of our current target's location, in weakref form. Only updates if we can see them. Use resolve() to find the proper value.
+	var/datum/weakref/target_location
 	var/attack_same = 0 //whether mob AI should target own faction members for attacks
 	var/list/friends = list() //list of mobs to consider friends, not types
 	var/environment_smash = 1
@@ -197,11 +230,10 @@
 	var/fleshcolor = "#DB0000"
 	var/bloodcolor = "#DB0000"
 	//Armor values for the mob. Works like normal armor values.
-	var/give_randomized_armor = FALSE
-	var/gives_prefex = FALSE
+
 	var/prefex = "bugged"
 
-	var/armor = list(
+	var/list/armor = list(
 		melee = 0,
 		bullet = 0,
 		energy = 0,
@@ -223,9 +255,11 @@
 
 	var/ranged = FALSE  //Do we have a range based attack?
 	var/rapid = FALSE   //Do we shoot in groups?
-	var/rapid_fire_shooting_amount = 3 //By default will rapid fire in 3 shots per.
+	var/rapid_fire_shooting_amount = 1 // Has to be one so stat modifiers can work.
 	var/obj/item/projectile/projectiletype  //What are we shooting?
 	var/projectilesound //What sound do we make when firing
+	/// How loud will our projectile firing sound be?
+	var/projectilevolume = 100
 	var/casingtype      //Do we leave casings after shooting?
 	var/ranged_cooldown //What is are modular cooldown, in seconds.
 	var/ranged_middlemouse_cooldown = 0 //For when people are controling them and firing, do we have a cooldown? Modular for admins to tweak.
@@ -257,3 +291,12 @@
 	delay_for_rapid_range = 0.75 SECONDS
 	delay_for_melee = 0 SECONDS
 	delay_for_all = 0.5 SECONDS
+
+	/// Used in proc/shoot to determine the inaccuracy of the projectile. Initial value.
+	var/initial_firing_offset = 2 // By default, two degrees of inaccuracy.
+	/**
+	 * Used in proc/shoot to determine the inaccuracy of the projectile. Used value.
+	 * A value between this and the sign-inverted (5 becomes -5) version of itself will be picked at random when the mob fires a projectile, and THAT will be the
+	 * final offset of the projectile. Make sure to sync with initial_firing_offset.
+	**/
+	var/current_firing_offset = 2
